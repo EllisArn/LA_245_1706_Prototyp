@@ -1,1 +1,1 @@
-# LA_245_1706_Prototyp
+# LA_245_Prototyp
