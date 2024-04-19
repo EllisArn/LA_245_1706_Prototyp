@@ -66,9 +66,7 @@ nav {
   gap: 5px;
 }
 
-.subjects,
-.topics,
-.assignments {
+.topics {
   display: block;
   align-items: center;
   width: calc(100% - 30px);
@@ -96,6 +94,9 @@ nav {
 
 .subjects {
   display: none;
-  border-radius: 5px;
+  width: calc(100% - 30px);
   padding: 10px;
+  background-color: darkseagreen;
+  border-radius: 5px;
+  cursor: pointer;
 }

@@ -7,17 +7,20 @@ function App() {
     const topics = document.querySelectorAll('.topics')
     const toggle = document.querySelector('#toggle')
 
+    function handleClick(event) {
+      if (toggle.checked) {
+        toggle.checked = false
+        toggleOptions()
+      } else {
+        toggle.checked = true
+        toggleOptions()
+      }
+      document.querySelector('#labelToToggle').innerHTML =
+        event.target.innerHTML
+    }
+
     subjects.forEach((subject) => {
-      subject.addEventListener('click', (event) => {
-        if (toggle.checked) {
-          toggle.checked = false
-          toggleOptions()
-        } else {
-          toggle.checked = true
-          toggleOptions()
-        }
-        document.querySelector('#labelToToggle').innerHTML = subject.innerHTML
-      })
+      subject.addEventListener('click', handleClick)
     })
 
     toggle.addEventListener('change', toggleOptions)
@@ -26,7 +29,6 @@ function App() {
       subjects.forEach((subject) => {
         subject.removeEventListener('click', handleClick)
       })
-
       topics.forEach((topic) => {
         topic.removeEventListener('click', handleClick)
       })
@@ -71,7 +73,6 @@ function App() {
 }
 
 function toggleOptions() {
-  console.log('toggleOptions', toggle.checked)
   if (toggle.checked) {
     document.querySelectorAll('.subjects').forEach((subject) => {
       subject.style.display = 'block'
@@ -87,10 +88,6 @@ function toggleOptions() {
       topic.style.display = 'block'
     })
   }
-}
-
-function handleClick(event) {
-  console.log(event.target)
 }
 
 export default App
