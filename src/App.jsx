@@ -187,19 +187,19 @@ function App() {
         <nav>
           <div id="subjectAndTopic-container">
             <label id="labelToToggle" htmlFor="toggle">
-              <span id="labelToToggle-text">s1</span>
+              <span id="labelToToggle-text">subject-1</span>
               <img id="dropdownArrow" src={DownArrow} alt="down-arrow" />
             </label>
 
             <input type="checkbox" id="toggle"></input>
-            <div className="subjects" value="s1">
-              s1
+            <div className="subjects" value="subject-1">
+              subject-1
             </div>
-            <div className="subjects" value="s2">
-              s2
+            <div className="subjects" value="subject-2">
+              subject-2
             </div>
-            <div className="subjects" value="s3">
-              s3
+            <div className="subjects" value="subject-3">
+              subject-3
             </div>
             <div className="topics selectedTopic" id="topic-1">
               topic-1 in s1
