@@ -33,6 +33,7 @@ function App() {
     }
 
     function handleSubjectClick(event) {
+      selectedSubject = event.target.innerHTML
       if (toggle.checked) {
         toggle.checked = false
       } else {
@@ -49,6 +50,9 @@ function App() {
         event.target.innerHTML
       document.querySelectorAll('.topics').forEach((topic) => {
         topic.innerHTML = `${topic.id} in ${event.target.innerHTML}`
+      })
+      document.querySelectorAll('.assignments').forEach((assignment) => {
+        assignment.innerHTML = `${assignment.id} in ${selectedTopic.id} in ${event.target.innerHTML}`
       })
       document.querySelector(
         '#textfield'
