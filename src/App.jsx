@@ -34,7 +34,7 @@ function App() {
 
     document.querySelector(
       '#textfield'
-    ).value = `text in assignment-1 in topic-1 in ${selectedSubject}`
+    ).value = `text in assignment-1 in topic-1 in ${selectedSubject.id}`
 
     function handleHeaderButtonClick(event) {
       selectedHeaderButton.classList.remove('selectedHeaderButton')
@@ -216,33 +216,33 @@ function App() {
               subject-3
             </div>
             <div className="topics selectedTopic" id="topic-1">
-              topic-1 in s1
+              topic-1 in subject-1
             </div>
             <div className="topics" id="topic-2">
-              topic-2 in s1
+              topic-2 in subject-1
             </div>
             <div className="topics" id="topic-3">
-              topic-3 in s1
+              topic-3 in subject-1
             </div>
             <div className="topics" id="topic-4">
-              topic-4 in s1
+              topic-4 in subject-1
             </div>
           </div>
           <div id="assignments-container">
             <div className="assignments selectedAssignment" id="assignment-1">
-              assignment-1 in topic-1 in s1
+              assignment-1 in topic-1 in subject-1
             </div>
             <div className="assignments" id="assignment-2">
-              assignment-2 in topic-1 in s1
+              assignment-2 in topic-1 in subject-1
             </div>
             <div className="assignments" id="assignment-3">
-              assignment-3 in topic-1 in s1
+              assignment-3 in topic-1 in subject-1
             </div>
             <div className="assignments" id="assignment-4">
-              assignment-4 in topic-1 in s1
+              assignment-4 in topic-1 in subject-1
             </div>
             <div className="assignments" id="assignment-5">
-              assignment-5 in topic-1 in s1
+              assignment-5 in topic-1 in subject-1
             </div>
           </div>
         </nav>
