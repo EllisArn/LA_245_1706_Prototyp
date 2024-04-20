@@ -73,6 +73,58 @@ function App() {
       ).value = `text in ${selectedAssignment.id} in topic-1 in ${event.target.innerHTML}`
     }
 
+    topics.forEach((topic) => {
+      topic.oncontextmenu = function (e) {
+        e.preventDefault()
+        return false
+      }
+    })
+
+    assignments.forEach((assignment) => {
+      assignment.oncontextmenu = function (e) {
+        e.preventDefault()
+        return false
+      }
+    })
+
+    const ctxmenu = document.querySelector('#ctxmenu')
+    const listitem = document.querySelector('#listitem')
+
+    document.addEventListener('contextmenu', (e) => {
+      ctxmenu.classList.remove('show')
+    })
+    document.addEventListener('click', (e) => {
+      ctxmenu.classList.remove('show')
+    })
+
+    topics.forEach((topic) => {
+      topic.addEventListener('contextmenu', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        ctxmenu.style.top = e.y + 'px'
+        ctxmenu.style.left = e.x + 'px'
+
+        listitem.innerHTML = `${topic.id} in ${selectedSubject.id} zuweisen`
+
+        ctxmenu.classList.add('show')
+      })
+    })
+
+    assignments.forEach((assignment) => {
+      assignment.addEventListener('contextmenu', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        ctxmenu.style.top = e.y + 'px'
+        ctxmenu.style.left = e.x + 'px'
+
+        listitem.innerHTML = `${assignment.id} in ${selectedTopic.id} zuweisen`
+
+        ctxmenu.classList.add('show')
+      })
+    })
+
     function handleTopicClick(event) {
       selectedTopic.classList.remove('selectedTopic')
       event.target.classList.add('selectedTopic')
@@ -246,6 +298,11 @@ function App() {
             </div>
           </div>
         </nav>
+      </div>
+      <div id="ctxmenu">
+        <ul id="list">
+          <li id="listitem"></li>
+        </ul>
       </div>
     </>
   )
