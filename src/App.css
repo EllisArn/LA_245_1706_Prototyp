@@ -61,7 +61,10 @@ header {
 
 .headerButtons:hover {
   background-color: #515c68;
-  color: white;
+}
+
+.selectedHeaderButton {
+  background-color: #515c68;
 }
 
 #header-bottom {
@@ -102,7 +105,7 @@ main {
 nav {
   grid-area: nav;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
   width: 100%;
   border: 1px solid #30363d;
@@ -113,18 +116,20 @@ nav {
   gap: 5px;
 }
 
-.topics {
-  display: block;
-  align-items: center;
-  width: calc(100% - 30px);
-  padding: 10px;
-  background-color: darkkhaki;
-  border-radius: 5px;
-  cursor: pointer;
+#subjectAndTopic-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  gap: 5px;
 }
 
-.topics:hover {
-  background-color: darkgoldenrod;
+#assignments-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  gap: 5px;
 }
 
 #toggle[type='checkbox'] {
@@ -158,6 +163,42 @@ nav {
 
 .subjects:hover {
   background-color: rgb(106, 138, 50);
+}
+
+.topics {
+  display: block;
+  align-items: center;
+  width: calc(100% - 30px);
+  padding: 10px;
+  background-color: darkkhaki;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.topics:hover {
+  background-color: darkgoldenrod;
+}
+
+.selectedTopic {
+  background-color: rgb(168, 122, 6);
+}
+
+.assignments {
+  display: block;
+  align-items: center;
+  width: calc(100% - 30px);
+  padding: 10px;
+  background-color: darksalmon;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.assignments:hover {
+  background-color: rgb(214, 122, 91);
+}
+
+.selectedAssignment {
+  background-color: rgb(202, 96, 61);
 }
 
 #textfield {

@@ -6,61 +6,27 @@ function App() {
     const headerButtons = document.querySelectorAll('.headerButtons')
     const subjects = document.querySelectorAll('.subjects')
     const topics = document.querySelectorAll('.topics')
+    const assignments = document.querySelectorAll('.assignments')
     const toggle = document.querySelector('#toggle')
 
-    let selectedHeaderButton = document.querySelector('.selected')
+    let selectedHeaderButton = document.querySelector('.selectedHeaderButton')
+    createEditButtons(selectedHeaderButton.id)
 
     let selectedSubject = document.querySelector('#labelToToggle').innerHTML
+
     document.querySelector(
       '#textfield'
-    ).value = `text in topic-1 in ${selectedSubject}`
+    ).value = `text in assignment-1 in topic-1 in ${selectedSubject}`
+
+    let selectedTopic = document.querySelector('.selectedTopic')
+
+    let selectedAssignment = document.querySelector('.selectedAssignment')
 
     function handleHeaderButtonClick(event) {
-      selectedHeaderButton.classList.remove('selected')
-      event.target.classList.add('selected')
+      selectedHeaderButton.classList.remove('selectedHeaderButton')
+      event.target.classList.add('selectedHeaderButton')
       selectedHeaderButton = event.target
-
-      if (event.target.id === 'start-headerButton') {
-        document.querySelector('#bottom-headerButtons').innerHTML = ''
-        for (let i = 1; i <= 22; i++) {
-          const button = document.createElement('button')
-          button.classList.add('editButtons')
-          button.innerHTML = i
-          document.querySelector('#bottom-headerButtons').appendChild(button)
-        }
-      } else if (event.target.id === 'insert-headerButton') {
-        document.querySelector('#bottom-headerButtons').innerHTML = ''
-        for (let i = 1; i <= 16; i++) {
-          const button = document.createElement('button')
-          button.classList.add('editButtons')
-          button.innerHTML = i
-          document.querySelector('#bottom-headerButtons').appendChild(button)
-        }
-      } else if (event.target.id === 'draw-headerButton') {
-        document.querySelector('#bottom-headerButtons').innerHTML = ''
-        for (let i = 1; i <= 16; i++) {
-          const button = document.createElement('button')
-          button.classList.add('editButtons')
-          button.innerHTML = i
-          document.querySelector('#bottom-headerButtons').appendChild(button)
-        }
-      } else if (event.target.id === 'view-headerButton') {
-        document.querySelector('#bottom-headerButtons').innerHTML = ''
-        for (let i = 1; i <= 15; i++) {
-          const button = document.createElement('button')
-          button.classList.add('editButtons')
-          button.innerHTML = i
-          document.querySelector('#bottom-headerButtons').appendChild(button)
-        }
-      } else if (event.target.id === 'help-headerButton') {
-        document.querySelector('#bottom-headerButtons').innerHTML = ''
-        for (let i = 1; i <= 4; i++) {
-          const button = document.createElement('button')
-          button.classList.add('editButtons')
-          button.innerHTML = i
-          document.querySelector('#bottom-headerButtons').appendChild(button)
-        }
-      }
+      createEditButtons(event.target.id)
     }
 
     function handleSubjectClick(event) {
@@ -78,13 +44,28 @@ function App() {
       })
       document.querySelector(
         '#textfield'
-      ).value = `text in topic-1 in ${event.target.innerHTML}`
+      ).value = `text in ${selectedAssignment.id} in topic-1 in ${event.target.innerHTML}`
     }
 
     function handleTopicClick(event) {
+      selectedTopic.classList.remove('selectedTopic')
+      event.target.classList.add('selectedTopic')
+      selectedTopic = event.target
+      assignments.forEach((assignment) => {
+        assignment.innerHTML = `${assignment.id} in ${event.target.id} in ${selectedSubject}`
+      })
       document.querySelector(
         '#textfield'
-      ).value = `text in ${event.target.id} in ${selectedSubject}`
+      ).value = `text in ${selectedAssignment.id} ${event.target.id} in ${selectedSubject}`
+    }
+
+    function handleAssignmentClick(event) {
+      selectedAssignment.classList.remove('selectedAssignment')
+      event.target.classList.add('selectedAssignment')
+      selectedAssignment = event.target
+      document.querySelector(
+        '#textfield'
+      ).value = `text in ${event.target.id} in ${selectedTopic.id} in ${selectedSubject}`
     }
 
     headerButtons.forEach((button) => {
@@ -97,6 +78,10 @@ function App() {
 
     topics.forEach((topic) => {
       topic.addEventListener('click', handleTopicClick)
+    })
+
+    assignments.forEach((assignment) => {
+      assignment.addEventListener('click', handleAssignmentClick)
     })
 
     toggle.addEventListener('change', toggleOptions)
@@ -119,7 +104,7 @@ function App() {
             <div id="top-headerButtons">
               <div id="menuButton-container">
                 <button
-                  className="headerButtons menuButtons selected"
+                  className="headerButtons menuButtons selectedHeaderButton"
                   id="start-headerButton"
                 >
                   Start
@@ -185,27 +170,49 @@ function App() {
           <textarea name="textfield" id="textfield"></textarea>
         </main>
         <nav>
-          <label id="labelToToggle" htmlFor="toggle">
-            s1
-          </label>
-          <input type="checkbox" id="toggle"></input>
-          <div className="subjects" value="s1">
-            s1
+          <div id="subjectAndTopic-container">
+            <label id="labelToToggle" htmlFor="toggle">
+              s1
+            </label>
+            <input type="checkbox" id="toggle"></input>
+            <div className="subjects" value="s1">
+              s1
+            </div>
+            <div className="subjects" value="s2">
+              s2
+            </div>
+            <div className="subjects" value="s3">
+              s3
+            </div>
+            <div className="topics selectedTopic" id="topic-1">
+              topic-1 in s1
+            </div>
+            <div className="topics" id="topic-2">
+              topic-2 in s1
+            </div>
+            <div className="topics" id="topic-3">
+              topic-3 in s1
+            </div>
+            <div className="topics" id="topic-4">
+              topic-4 in s1
+            </div>
           </div>
-          <div className="subjects" value="s2">
-            s2
-          </div>
-          <div className="subjects" value="s3">
-            s3
-          </div>
-          <div className="topics" id="topic-1">
-            topic-1 in s1
-          </div>
-          <div className="topics" id="topic-2">
-            topic-2 in s1
-          </div>
-          <div className="topics" id="topic-3">
-            topic-3 in s1
+          <div id="assignments-container">
+            <div className="assignments selectedAssignment" id="assignment-1">
+              assignment-1 in topic-1 in s1
+            </div>
+            <div className="assignments" id="assignment-2">
+              assignment-2 in topic-1 in s1
+            </div>
+            <div className="assignments" id="assignment-3">
+              assignment-3 in topic-1 in s1
+            </div>
+            <div className="assignments" id="assignment-4">
+              assignment-4 in topic-1 in s1
+            </div>
+            <div className="assignments" id="assignment-5">
+              assignment-5 in topic-1 in s1
+            </div>
           </div>
         </nav>
       </div>
@@ -229,6 +236,50 @@ function toggleOptions() {
     document.querySelectorAll('.topics').forEach((topic) => {
       topic.style.display = 'block'
     })
+  }
+}
+
+function createEditButtons(buttonId) {
+  if (buttonId === 'start-headerButton') {
+    document.querySelector('#bottom-headerButtons').innerHTML = ''
+    for (let i = 1; i <= 22; i++) {
+      const button = document.createElement('button')
+      button.classList.add('editButtons')
+      button.innerHTML = i
+      document.querySelector('#bottom-headerButtons').appendChild(button)
+    }
+  } else if (buttonId === 'insert-headerButton') {
+    document.querySelector('#bottom-headerButtons').innerHTML = ''
+    for (let i = 1; i <= 16; i++) {
+      const button = document.createElement('button')
+      button.classList.add('editButtons')
+      button.innerHTML = i
+      document.querySelector('#bottom-headerButtons').appendChild(button)
+    }
+  } else if (buttonId === 'draw-headerButton') {
+    document.querySelector('#bottom-headerButtons').innerHTML = ''
+    for (let i = 1; i <= 16; i++) {
+      const button = document.createElement('button')
+      button.classList.add('editButtons')
+      button.innerHTML = i
+      document.querySelector('#bottom-headerButtons').appendChild(button)
+    }
+  } else if (buttonId === 'view-headerButton') {
+    document.querySelector('#bottom-headerButtons').innerHTML = ''
+    for (let i = 1; i <= 15; i++) {
+      const button = document.createElement('button')
+      button.classList.add('editButtons')
+      button.innerHTML = i
+      document.querySelector('#bottom-headerButtons').appendChild(button)
+    }
+  } else if (buttonId === 'help-headerButton') {
+    document.querySelector('#bottom-headerButtons').innerHTML = ''
+    for (let i = 1; i <= 4; i++) {
+      const button = document.createElement('button')
+      button.classList.add('editButtons')
+      button.innerHTML = i
+      document.querySelector('#bottom-headerButtons').appendChild(button)
+    }
   }
 }
 
