@@ -82,15 +82,23 @@ header {
 }
 
 .editButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1 / 1;
   border-radius: 0;
   border: none;
+  padding: 0;
   background-color: #424b55;
 }
 
 .editButtons:hover {
   background-color: #515c68;
   color: white;
+}
+
+.icons {
+  height: 50%;
 }
 
 main {

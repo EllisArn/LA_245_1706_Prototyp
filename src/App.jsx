@@ -1,6 +1,20 @@
 import React, { useEffect } from 'react'
 import './App.css'
 import DownArrow from './assets/down-arrow-svgrepo-com.svg'
+import ReverseArrow from './assets/reverse-left-svgrepo-com.svg'
+import ForwardArrow from './assets/reverse-right-svgrepo-com.svg'
+import Clipboard from './assets/clipboard-svgrepo-com.svg'
+import Underline from './assets/underline-svgrepo-com.svg'
+import Highlight from './assets/highlighter-svgrepo-com.svg'
+import Textcolour from './assets/text-color-svgrepo-com.svg'
+import FormatBrush from './assets/paintbrush-svgrepo-com.svg'
+import RemoveFormat from './assets/text-clear-format-svgrepo-com.svg'
+import List from './assets/list-ul-alt-svgrepo-com.svg'
+import NumberedList from './assets/list-numbered-svgrepo-com.svg'
+import DecreaseIndent from './assets/format-indent-decrease-svgrepo-com.svg'
+import IncreaseIndent from './assets/format-indent-increase-svgrepo-com.svg'
+import Checkbox from './assets/checkbox-check-svgrepo-com.svg'
+import Microphone from './assets/microphone-svgrepo-com.svg'
 
 function App() {
   useEffect(() => {
@@ -12,6 +26,7 @@ function App() {
 
     let selectedHeaderButton = document.querySelector('.selectedHeaderButton')
     createEditButtons(selectedHeaderButton.id)
+    setIconsForEditButtons(selectedHeaderButton.id)
 
     let selectedSubject = document.querySelector(
       '#labelToToggle-text'
@@ -30,6 +45,7 @@ function App() {
       event.target.classList.add('selectedHeaderButton')
       selectedHeaderButton = event.target
       createEditButtons(event.target.id)
+      setIconsForEditButtons(event.target.id)
     }
 
     function handleSubjectClick(event) {
@@ -259,7 +275,7 @@ function toggleOptions() {
 function createEditButtons(buttonId) {
   if (buttonId === 'start-headerButton') {
     document.querySelector('#bottom-headerButtons').innerHTML = ''
-    for (let i = 1; i <= 22; i++) {
+    for (let i = 1; i <= 21; i++) {
       const button = document.createElement('button')
       button.classList.add('editButtons')
       button.innerHTML = i
@@ -297,6 +313,35 @@ function createEditButtons(buttonId) {
       button.innerHTML = i
       document.querySelector('#bottom-headerButtons').appendChild(button)
     }
+  }
+}
+
+function setIconsForEditButtons(buttonId) {
+  const editButtons = document.querySelectorAll('.editButtons')
+  if (buttonId === 'start-headerButton') {
+    editButtons[0].innerHTML = `<img class="icons" id="reverseArrow" src=${ReverseArrow} alt="reverse arrow" />`
+    editButtons[1].innerHTML = `<img class="icons" id="forwardArrow" src= ${ForwardArrow} alt="forward arrow" />`
+    editButtons[2].innerHTML = `<img class="icons" id="clipboard" src=${Clipboard} alt="clipboard" />`
+    editButtons[3].innerHTML = `<div>Calibri</div>`
+    editButtons[3].style.aspectRatio = '0'
+    editButtons[3].style.padding = '0 5px 0 5px'
+    editButtons[4].innerHTML = `<div>11</div>`
+    editButtons[5].innerHTML = `<div style="font-weight: bold">F</div>`
+    editButtons[6].innerHTML = `<div style="font-style: italic">K</div>`
+    editButtons[7].innerHTML = `<img class="icons" id="underline" src=${Underline} alt="underline" />`
+    editButtons[8].innerHTML = `<img class="icons" id="highlight" src=${Highlight} alt="highlight" />`
+    editButtons[9].innerHTML = `<img class="icons" id="textcolour" src=${Textcolour} alt="text colour" />`
+    editButtons[10].innerHTML = `<img class="icons" id="formatBrush" src=${FormatBrush} alt="format brush" />`
+    editButtons[11].innerHTML = `<img class="icons" id="removeFormat" src=${RemoveFormat} alt="remove format" />`
+    editButtons[12].innerHTML = `<img class="icons" id="textStyleDropdown" src=${DownArrow} alt="arrow down" />`
+    editButtons[13].innerHTML = `<img class="icons" id="list" src=${List} alt="list" />`
+    editButtons[14].innerHTML = `<img class="icons" id="numberedList" src=${NumberedList} alt="numbered list" />`
+    editButtons[15].innerHTML = `<img class="icons" id="decreaseIndent" src=${DecreaseIndent} alt="decrease indent" />`
+    editButtons[16].innerHTML = `<img class="icons" id="increaseIndent" src=${IncreaseIndent} alt="increase indent" />`
+    editButtons[17].innerHTML = `<img class="icons" id="textStyleDropdown" src=${DownArrow} alt="arrow down" />`
+    editButtons[18].innerHTML = `<img class="icons" id="checkbox" src=${Checkbox} alt="checkbox" />`
+    editButtons[19].innerHTML = `<img class="icons" id="microphone" src=${Microphone} alt="microphone" />`
+    editButtons[20].innerHTML = `<img class="icons" id="microphoneDropdown" src=${DownArrow} alt="arrow down" />`
   }
 }
 
