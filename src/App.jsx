@@ -33,12 +33,17 @@ function App() {
     }
 
     function handleSubjectClick(event) {
-      selectedSubject = event.target.innerHTML
       if (toggle.checked) {
         toggle.checked = false
       } else {
         toggle.checked = true
       }
+      selectedTopic.classList.remove('selectedTopic')
+      selectedTopic = document.querySelector('.topics')
+      selectedTopic.classList.add('selectedTopic')
+      selectedAssignment.classList.remove('selectedAssignment')
+      selectedAssignment = document.querySelector('.assignments')
+      selectedAssignment.classList.add('selectedAssignment')
       toggleOptions()
       document.querySelector('#labelToToggle-text').innerHTML =
         event.target.innerHTML
@@ -54,6 +59,9 @@ function App() {
       selectedTopic.classList.remove('selectedTopic')
       event.target.classList.add('selectedTopic')
       selectedTopic = event.target
+      selectedAssignment.classList.remove('selectedAssignment')
+      selectedAssignment = document.querySelector('.assignments')
+      selectedAssignment.classList.add('selectedAssignment')
       assignments.forEach((assignment) => {
         assignment.innerHTML = `${assignment.id} in ${event.target.id} in ${selectedSubject}`
       })
