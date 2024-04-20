@@ -124,6 +124,10 @@ nav {
   gap: 5px;
 }
 
+#dropdownArrow {
+  height: 15px;
+}
+
 #assignments-container {
   display: flex;
   flex-direction: column;
@@ -139,9 +143,11 @@ nav {
 }
 
 #labelToToggle {
-  display: inline-block;
+  display: flex;
   width: calc(100% - 30px);
   text-align: center;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgb(122, 122, 122);
   cursor: pointer;
   padding: 10px;

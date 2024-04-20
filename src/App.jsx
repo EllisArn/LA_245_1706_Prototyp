@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './App.css'
+import DownArrow from './assets/down-arrow-svgrepo-com.svg'
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,9 @@ function App() {
     let selectedHeaderButton = document.querySelector('.selectedHeaderButton')
     createEditButtons(selectedHeaderButton.id)
 
-    let selectedSubject = document.querySelector('#labelToToggle').innerHTML
+    let selectedSubject = document.querySelector(
+      '#labelToToggle-text'
+    ).innerHTML
 
     document.querySelector(
       '#textfield'
@@ -37,7 +40,7 @@ function App() {
         toggle.checked = true
       }
       toggleOptions()
-      document.querySelector('#labelToToggle').innerHTML =
+      document.querySelector('#labelToToggle-text').innerHTML =
         event.target.innerHTML
       document.querySelectorAll('.topics').forEach((topic) => {
         topic.innerHTML = `${topic.id} in ${event.target.innerHTML}`
@@ -172,8 +175,10 @@ function App() {
         <nav>
           <div id="subjectAndTopic-container">
             <label id="labelToToggle" htmlFor="toggle">
-              s1
+              <span id="labelToToggle-text">s1</span>
+              <img id="dropdownArrow" src={DownArrow} alt="down-arrow" />
             </label>
+
             <input type="checkbox" id="toggle"></input>
             <div className="subjects" value="s1">
               s1
