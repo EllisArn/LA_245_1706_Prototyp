@@ -28,17 +28,13 @@ function App() {
     createEditButtons(selectedHeaderButton.id)
     setIconsForEditButtons(selectedHeaderButton.id)
 
-    let selectedSubject = document.querySelector(
-      '#labelToToggle-text'
-    ).innerHTML
+    let selectedSubject = document.querySelector('.selectedSubject')
+    let selectedTopic = document.querySelector('.selectedTopic')
+    let selectedAssignment = document.querySelector('.selectedAssignment')
 
     document.querySelector(
       '#textfield'
     ).value = `text in assignment-1 in topic-1 in ${selectedSubject}`
-
-    let selectedTopic = document.querySelector('.selectedTopic')
-
-    let selectedAssignment = document.querySelector('.selectedAssignment')
 
     function handleHeaderButtonClick(event) {
       selectedHeaderButton.classList.remove('selectedHeaderButton')
@@ -49,12 +45,14 @@ function App() {
     }
 
     function handleSubjectClick(event) {
-      selectedSubject = event.target.innerHTML
       if (toggle.checked) {
         toggle.checked = false
       } else {
         toggle.checked = true
       }
+      selectedSubject.classList.remove('selectedSubject')
+      event.target.classList.add('selectedSubject')
+      selectedSubject = event.target
       selectedTopic.classList.remove('selectedTopic')
       selectedTopic = document.querySelector('.topics')
       selectedTopic.classList.add('selectedTopic')
@@ -83,11 +81,11 @@ function App() {
       selectedAssignment = document.querySelector('.assignments')
       selectedAssignment.classList.add('selectedAssignment')
       assignments.forEach((assignment) => {
-        assignment.innerHTML = `${assignment.id} in ${event.target.id} in ${selectedSubject}`
+        assignment.innerHTML = `${assignment.id} in ${event.target.id} in ${selectedSubject.id}`
       })
       document.querySelector(
         '#textfield'
-      ).value = `text in ${selectedAssignment.id} ${event.target.id} in ${selectedSubject}`
+      ).value = `text in ${selectedAssignment.id} ${event.target.id} in ${selectedSubject.id}`
     }
 
     function handleAssignmentClick(event) {
@@ -96,7 +94,7 @@ function App() {
       selectedAssignment = event.target
       document.querySelector(
         '#textfield'
-      ).value = `text in ${event.target.id} in ${selectedTopic.id} in ${selectedSubject}`
+      ).value = `text in ${event.target.id} in ${selectedTopic.id} in ${selectedSubject.id}`
     }
 
     headerButtons.forEach((button) => {
@@ -208,13 +206,13 @@ function App() {
             </label>
 
             <input type="checkbox" id="toggle"></input>
-            <div className="subjects" value="subject-1">
+            <div className="subjects selectedSubject" id="subject-1">
               subject-1
             </div>
-            <div className="subjects" value="subject-2">
+            <div className="subjects" id="subject-2">
               subject-2
             </div>
-            <div className="subjects" value="subject-3">
+            <div className="subjects" id="subject-3">
               subject-3
             </div>
             <div className="topics selectedTopic" id="topic-1">

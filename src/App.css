@@ -179,6 +179,10 @@ nav {
   background-color: #515c68;
 }
 
+.selectedSubject {
+  background-color: #515c68;
+}
+
 .topics {
   display: block;
   align-items: center;
