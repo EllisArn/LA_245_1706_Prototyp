@@ -228,6 +228,7 @@ nav {
   border: none;
 }
 
+/* Von hier bis zum nächsten Kommentar habe ich ebenfalls folgendes als Vorlage benutzt und abgeändert: https://stackoverflow.com/questions/62563870/custom-right-click-menu-on-all-a-elements */
 #ctxmenu {
   display: none;
   position: absolute;
@@ -259,3 +260,4 @@ nav {
 #ctxmenu #listitem:hover {
   background-color: rgba(233, 233, 233, 0.5);
 }
+/* Ab hier wieder 100% mein Code */

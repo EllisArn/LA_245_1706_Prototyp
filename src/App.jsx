@@ -87,6 +87,7 @@ function App() {
       }
     })
 
+    // von hier bis zum nächsten Kommentar habe ich folgendes als Vorlage benutzt und abgeändert: https://stackoverflow.com/questions/62563870/custom-right-click-menu-on-all-a-elements
     const ctxmenu = document.querySelector('#ctxmenu')
     const listitem = document.querySelector('#listitem')
 
@@ -124,6 +125,7 @@ function App() {
         ctxmenu.classList.add('show')
       })
     })
+    // ab hier wider 100% selbst geschrieben
 
     function handleTopicClick(event) {
       selectedTopic.classList.remove('selectedTopic')
@@ -307,6 +309,15 @@ function App() {
     </>
   )
 }
+
+/* Das HTML 
+<div id="ctxmenu">
+  <ul id="list">
+    <li id="listitem"></li>
+  </ul>
+</div>
+habe ich ebenfalls von https://stackoverflow.com/questions/62563870/custom-right-click-menu-on-all-a-elements kopiert und abgeändert
+*/
 
 function toggleOptions() {
   const toggle = document.querySelector('#toggle')
