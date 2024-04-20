@@ -7,30 +7,48 @@ function App() {
     const topics = document.querySelectorAll('.topics')
     const toggle = document.querySelector('#toggle')
 
-    function handleClick(event) {
+    let selectedSubject = document.querySelector('#labelToToggle').innerHTML
+
+    function handleSubjectClick(event) {
+      selectedSubject = event.target.innerHTML
       if (toggle.checked) {
         toggle.checked = false
-        toggleOptions()
       } else {
         toggle.checked = true
-        toggleOptions()
       }
+      toggleOptions()
       document.querySelector('#labelToToggle').innerHTML =
         event.target.innerHTML
+      document.querySelectorAll('.topics').forEach((topic) => {
+        topic.innerHTML = `${topic.id} in ${event.target.innerHTML}`
+      })
+      document.querySelector(
+        '#textfield'
+      ).value = `text in topic-1 in ${event.target.innerHTML}`
+    }
+
+    function handleTopicClick(event) {
+      document.querySelector(
+        '#textfield'
+      ).value = `text in ${event.target.id} in ${selectedSubject}`
     }
 
     subjects.forEach((subject) => {
-      subject.addEventListener('click', handleClick)
+      subject.addEventListener('click', handleSubjectClick)
+    })
+
+    topics.forEach((topic) => {
+      topic.addEventListener('click', handleTopicClick)
     })
 
     toggle.addEventListener('change', toggleOptions)
 
     return () => {
       subjects.forEach((subject) => {
-        subject.removeEventListener('click', handleClick)
+        subject.removeEventListener('click', handleSubjectClick)
       })
       topics.forEach((topic) => {
-        topic.removeEventListener('click', handleClick)
+        topic.removeEventListener('click', handleTopicClick)
       })
     }
   }, [])
@@ -42,7 +60,11 @@ function App() {
           <div id="header-top">1</div>
           <div id="header-bottom">2</div>
         </header>
-        <main>main</main>
+        <main>
+          <textarea name="textfield" id="textfield">
+            text in topic-1 in s1
+          </textarea>
+        </main>
         <nav>
           <label id="labelToToggle" htmlFor="toggle">
             s1
@@ -58,13 +80,13 @@ function App() {
             s3
           </div>
           <div className="topics" id="topic-1">
-            t1
+            topic-1 in s1
           </div>
           <div className="topics" id="topic-2">
-            t2
+            topic-2 in s1
           </div>
           <div className="topics" id="topic-3">
-            t3
+            topic-3 in s1
           </div>
         </nav>
       </div>
@@ -73,6 +95,7 @@ function App() {
 }
 
 function toggleOptions() {
+  const toggle = document.querySelector('#toggle')
   if (toggle.checked) {
     document.querySelectorAll('.subjects').forEach((subject) => {
       subject.style.display = 'block'
